@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Paneli</title>
+    <style>
+        /* Genel Stil */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Sayfa Yapısı */
+        body {
+            display: flex;
+            height: 100vh;
+            background: #f4f4f4;
+        }
+
+        /* Navbar (Üst Menü) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: #4e54c8;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .navbar .user-info {
+            font-size: 16px;
+        }
+
+        .logout-btn {
+            background: #ff4b5c;
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-left: 10px;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #ff1e36;
+        }
+
+        /* Sidebar (Yan Menü) */
+        .sidebar {
+            width: 250px;
+            background: #333;
+            color: white;
+            padding-top: 70px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background: #4e54c8;
+            cursor: pointer;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        /* Ana İçerik Bölümü */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            margin-top: 70px;
+        }
+
+        .dashboard-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Animasyon */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Tasarım */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Dashboard</div>
+        <div class="user-info">
+            Hoş Geldiniz, <b>{{ user.username }}</b>
+            <a href="{% url 'logout' %}" class="logout-btn">Çıkış Yap</a>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="#">Profil</a></li>
+            <li><a href="#">Ayarlar</a></li>
+            <li><a href="#">Mesajlar</a></li>
+            <li><a href="#">Destek</a></li>
+        </ul>
+    </div>
+
+    <!-- Ana İçerik -->
+    <div class="main-content">
+        <div class="dashboard-box">
+            <h2>Dashboard'a Hoş Geldiniz</h2>
+            <p>Burası kullanıcı paneliniz. Buradan tüm bilgilerinize ulaşabilirsiniz.</p>
+        </div>
+    </div>
+
+</body>
+</html>
