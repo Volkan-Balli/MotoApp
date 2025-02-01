@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -28,3 +29,6 @@ def home(request):
 def logout(request):
     messages.success(request,"Başarılı Çıkış Yapıldı")
     return render(request,'login.html')
+def home(request):
+    users = User.objects.all()
+    return render(request, 'dashboard.html', {'users': users})
